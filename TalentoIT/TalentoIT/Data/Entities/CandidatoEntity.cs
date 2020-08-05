@@ -30,8 +30,5 @@ namespace TalentoIT.Data.Entities
         public string SitioWeb { get; set; }
         public string Compañia { get; set; }
 
-
-
-
     }
 }
