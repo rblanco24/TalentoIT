@@ -16,5 +16,8 @@ namespace TalentoIT.Data
         public DbSet<EntrevistaEntity> Entrevista { get; set; }
         public DbSet<ReclutadorEntity> Reclutador { get; set; }
         public DbSet<TalentoIT.Data.Entities.TecnologiaEntity> TecnologiaEntity { get; set; }
+        public DbSet<TalentoIT.Data.Entities.CompanyEntity> CompanyEntity { get; set; }
+        public DbSet<TalentoIT.Data.Entities.AddressEntity> AddressEntity { get; set; }
+        public DbSet<TalentoIT.Data.Entities.GeoEntity> GeoEntity { get; set; }
     }
 }

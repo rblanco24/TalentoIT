@@ -10,22 +10,22 @@ using TalentoIT.Data.Entities;
 
 namespace TalentoIT.Controllers
 {
-    public class CandidatoController : Controller
+    public class AddressController : Controller
     {
         private readonly DataContext _context;
 
-        public CandidatoController(DataContext context)
+        public AddressController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Candidato
+        // GET: Address
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Candidato.ToListAsync());
+            return View(await _context.AddressEntity.ToListAsync());
         }
 
-        // GET: Candidato/Details/5
+        // GET: Address/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace TalentoIT.Controllers
                 return NotFound();
             }
 
-            var candidatoEntity = await _context.Candidato
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (candidatoEntity == null)
+            var addressEntity = await _context.AddressEntity
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (addressEntity == null)
             {
                 return NotFound();
             }
 
-            return View(candidatoEntity);
+            return View(addressEntity);
         }
 
-        // GET: Candidato/Create
+        // GET: Address/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Candidato/Create
+        // POST: Address/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,username,email,phone,website")] CandidatoEntity candidatoEntity)
+        public async Task<IActionResult> Create([Bind("Id,street,suite,city,zipcode")] AddressEntity addressEntity)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(candidatoEntity);
+                _context.Add(addressEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(candidatoEntity);
+            return View(addressEntity);
         }
 
-        // GET: Candidato/Edit/5
+        // GET: Address/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace TalentoIT.Controllers
                 return NotFound();
             }
 
-            var candidatoEntity = await _context.Candidato.FindAsync(id);
-            if (candidatoEntity == null)
+            var addressEntity = await _context.AddressEntity.FindAsync(id);
+            if (addressEntity == null)
             {
                 return NotFound();
             }
-            return View(candidatoEntity);
+            return View(addressEntity);
         }
 
-        // POST: Candidato/Edit/5
+        // POST: Address/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,name,username,email,phone,website")] CandidatoEntity candidatoEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,street,suite,city,zipcode")] AddressEntity addressEntity)
         {
-            if (id != candidatoEntity.id)
+            if (id != addressEntity.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace TalentoIT.Controllers
             {
                 try
                 {
-                    _context.Update(candidatoEntity);
+                    _context.Update(addressEntity);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CandidatoEntityExists(candidatoEntity.id))
+                    if (!AddressEntityExists(addressEntity.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace TalentoIT.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(candidatoEntity);
+            return View(addressEntity);
         }
 
-        // GET: Candidato/Delete/5
+        // GET: Address/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace TalentoIT.Controllers
                 return NotFound();
             }
 
-            var candidatoEntity = await _context.Candidato
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (candidatoEntity == null)
+            var addressEntity = await _context.AddressEntity
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (addressEntity == null)
             {
                 return NotFound();
             }
 
-            return View(candidatoEntity);
+            return View(addressEntity);
         }
 
-        // POST: Candidato/Delete/5
+        // POST: Address/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var candidatoEntity = await _context.Candidato.FindAsync(id);
-            _context.Candidato.Remove(candidatoEntity);
+            var addressEntity = await _context.AddressEntity.FindAsync(id);
+            _context.AddressEntity.Remove(addressEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CandidatoEntityExists(int id)
+        private bool AddressEntityExists(int id)
         {
-            return _context.Candidato.Any(e => e.id == id);
+            return _context.AddressEntity.Any(e => e.Id == id);
         }
     }
 }

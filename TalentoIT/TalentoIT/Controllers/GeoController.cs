@@ -10,22 +10,22 @@ using TalentoIT.Data.Entities;
 
 namespace TalentoIT.Controllers
 {
-    public class CandidatoController : Controller
+    public class GeoController : Controller
     {
         private readonly DataContext _context;
 
-        public CandidatoController(DataContext context)
+        public GeoController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Candidato
+        // GET: Geo
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Candidato.ToListAsync());
+            return View(await _context.GeoEntity.ToListAsync());
         }
 
-        // GET: Candidato/Details/5
+        // GET: Geo/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace TalentoIT.Controllers
                 return NotFound();
             }
 
-            var candidatoEntity = await _context.Candidato
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (candidatoEntity == null)
+            var geoEntity = await _context.GeoEntity
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (geoEntity == null)
             {
                 return NotFound();
             }
 
-            return View(candidatoEntity);
+            return View(geoEntity);
         }
 
-        // GET: Candidato/Create
+        // GET: Geo/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Candidato/Create
+        // POST: Geo/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name,username,email,phone,website")] CandidatoEntity candidatoEntity)
+        public async Task<IActionResult> Create([Bind("Id,lat,lng")] GeoEntity geoEntity)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(candidatoEntity);
+                _context.Add(geoEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(candidatoEntity);
+            return View(geoEntity);
         }
 
-        // GET: Candidato/Edit/5
+        // GET: Geo/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace TalentoIT.Controllers
                 return NotFound();
             }
 
-            var candidatoEntity = await _context.Candidato.FindAsync(id);
-            if (candidatoEntity == null)
+            var geoEntity = await _context.GeoEntity.FindAsync(id);
+            if (geoEntity == null)
             {
                 return NotFound();
             }
-            return View(candidatoEntity);
+            return View(geoEntity);
         }
 
-        // POST: Candidato/Edit/5
+        // POST: Geo/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,name,username,email,phone,website")] CandidatoEntity candidatoEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,lat,lng")] GeoEntity geoEntity)
         {
-            if (id != candidatoEntity.id)
+            if (id != geoEntity.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace TalentoIT.Controllers
             {
                 try
                 {
-                    _context.Update(candidatoEntity);
+                    _context.Update(geoEntity);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CandidatoEntityExists(candidatoEntity.id))
+                    if (!GeoEntityExists(geoEntity.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace TalentoIT.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(candidatoEntity);
+            return View(geoEntity);
         }
 
-        // GET: Candidato/Delete/5
+        // GET: Geo/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace TalentoIT.Controllers
                 return NotFound();
             }
 
-            var candidatoEntity = await _context.Candidato
-                .FirstOrDefaultAsync(m => m.id == id);
-            if (candidatoEntity == null)
+            var geoEntity = await _context.GeoEntity
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (geoEntity == null)
             {
                 return NotFound();
             }
 
-            return View(candidatoEntity);
+            return View(geoEntity);
         }
 
-        // POST: Candidato/Delete/5
+        // POST: Geo/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var candidatoEntity = await _context.Candidato.FindAsync(id);
-            _context.Candidato.Remove(candidatoEntity);
+            var geoEntity = await _context.GeoEntity.FindAsync(id);
+            _context.GeoEntity.Remove(geoEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CandidatoEntityExists(int id)
+        private bool GeoEntityExists(int id)
         {
-            return _context.Candidato.Any(e => e.id == id);
+            return _context.GeoEntity.Any(e => e.Id == id);
         }
     }
 }

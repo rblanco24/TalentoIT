@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TalentoIT.Data.Entities.EntrevistaEntity>
+﻿@model IEnumerable<TalentoIT.Data.Entities.GeoEntity>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,10 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FechaHora)
+                @Html.DisplayNameFor(model => model.lat)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tipo)
+                @Html.DisplayNameFor(model => model.lng)
             </th>
             <th></th>
         </tr>
@@ -25,10 +25,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaHora)
+                @Html.DisplayFor(modelItem => item.lat)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tipo)
+                @Html.DisplayFor(modelItem => item.lng)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

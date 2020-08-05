@@ -1,0 +1,42 @@
+﻿@model TalentoIT.Data.Entities.AddressEntity
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AddressEntity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.street)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.street)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.suite)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.suite)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.zipcode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.zipcode)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
