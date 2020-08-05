@@ -7,7 +7,7 @@ namespace TalentoIT.Data
 {
     public class SeedDb
     {
-        private readonly DataContext _dataContext;
+      /*  private readonly DataContext _dataContext;
 
         public SeedDb(DataContext dataContext)
         {
@@ -27,9 +27,7 @@ namespace TalentoIT.Data
             }
             _dataContext.Candidato.Add(new CandidatoEntity
             { 
-             Nombre ="",
-             Apellido ="",
-             Correo ="",
+             
 
             
             });
@@ -38,6 +36,6 @@ namespace TalentoIT.Data
         public void Rest()
         {
             
-        }
+        }*/
     }
 }

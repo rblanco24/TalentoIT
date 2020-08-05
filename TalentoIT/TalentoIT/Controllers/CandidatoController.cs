@@ -54,7 +54,7 @@ namespace TalentoIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Apellido,Correo,Direccion,Telefono,SitioWeb,Compañia")] CandidatoEntity candidatoEntity)
+        public async Task<IActionResult> Create([Bind("Id")] CandidatoEntity candidatoEntity)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace TalentoIT.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Apellido,Correo,Direccion,Telefono,SitioWeb,Compañia")] CandidatoEntity candidatoEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("Id")] CandidatoEntity candidatoEntity)
         {
             if (id != candidatoEntity.Id)
             {
