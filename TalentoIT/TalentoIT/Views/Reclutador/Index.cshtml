@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TalentoIT.Data.Entities.ReclutadorEntity>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form >
+            <div class="form-group">
+                <label  class="control-label">Tecnologia</label>
+                <select id="cbxTecnologia" form="">
+                    <option value="1">Microsoft .Net</option>
+                    <option value="2">Oracle Java</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</div>
