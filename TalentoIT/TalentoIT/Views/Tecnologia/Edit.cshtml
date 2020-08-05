@@ -14,9 +14,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="TipoTecnlogia" class="control-label"></label>
-                <input asp-for="TipoTecnlogia" class="form-control" />
-                <span asp-validation-for="TipoTecnlogia" class="text-danger"></span>
+                <label asp-for="TipoTecnologia" class="control-label"></label>
+                <input asp-for="TipoTecnologia" class="form-control" />
+                <span asp-validation-for="TipoTecnologia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

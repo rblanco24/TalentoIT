@@ -9,7 +9,8 @@ namespace TalentoIT.Data.Entities
     {
         public int Id { get; set; }
 
-        public string TipoTecnlogia { get; set; }
+        public string TipoTecnologia { get; set; }
+        public string Nombre { get; set; }
 
     }
 }
