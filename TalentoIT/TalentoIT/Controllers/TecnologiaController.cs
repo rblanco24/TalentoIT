@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using TalentoIT.Data;
 using TalentoIT.Data.Entities;
 
@@ -20,9 +17,25 @@ namespace TalentoIT.Controllers
         }
 
         // GET: Tecnologia
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string parametro)
         {
-            return View(await _context.TecnologiaEntity.ToListAsync());
+            try
+            {
+                if (parametro != null)
+                {
+                    return View(await _context.TecnologiaEntity.Where(w => w.TipoTecnologia == parametro).OrderBy(t => t.TipoTecnologia).ToListAsync());
+                }
+                else
+                {
+                    return View(await _context.TecnologiaEntity.OrderBy(t => t.TipoTecnologia).ToListAsync());
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
         }
 
         // GET: Tecnologia/Details/5
@@ -33,8 +46,8 @@ namespace TalentoIT.Controllers
                 return NotFound();
             }
 
-            var tecnologiaEntity = await _context.TecnologiaEntity
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var tecnologiaEntity = await _context.TecnologiaEntity.FindAsync(id);
+
             if (tecnologiaEntity == null)
             {
                 return NotFound();
@@ -49,9 +62,6 @@ namespace TalentoIT.Controllers
             return View();
         }
 
-        // POST: Tecnologia/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,TipoTecnologia,Nombre")] TecnologiaEntity tecnologiaEntity)
@@ -81,9 +91,7 @@ namespace TalentoIT.Controllers
             return View(tecnologiaEntity);
         }
 
-        // POST: Tecnologia/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,TipoTecnologia,Nombre")] TecnologiaEntity tecnologiaEntity)
@@ -124,22 +132,12 @@ namespace TalentoIT.Controllers
                 return NotFound();
             }
 
-            var tecnologiaEntity = await _context.TecnologiaEntity
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var tecnologiaEntity = await _context.TecnologiaEntity.FindAsync(id);
             if (tecnologiaEntity == null)
             {
                 return NotFound();
             }
 
-            return View(tecnologiaEntity);
-        }
-
-        // POST: Tecnologia/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var tecnologiaEntity = await _context.TecnologiaEntity.FindAsync(id);
             _context.TecnologiaEntity.Remove(tecnologiaEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -148,6 +146,12 @@ namespace TalentoIT.Controllers
         private bool TecnologiaEntityExists(int id)
         {
             return _context.TecnologiaEntity.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        public IActionResult submit(string parametro)
+        {
+            return RedirectToAction("Index", "Reclutador", new { parametro = "" });
         }
     }
 }

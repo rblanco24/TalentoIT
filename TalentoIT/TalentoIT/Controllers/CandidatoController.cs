@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using TalentoIT.Data;
 using TalentoIT.Data.Entities;
 
@@ -22,7 +19,12 @@ namespace TalentoIT.Controllers
         // GET: Candidato
         public async Task<IActionResult> Index()
         {
+            /* string url = "http://jsonplaceholder.typicode.com/users";
+             var json = new WebClient().DownloadString(url);
+             dynamic m = JsonConvert.DeserializeObject(json);*/
+
             return View(await _context.Candidato.ToListAsync());
+
         }
 
         // GET: Candidato/Details/5

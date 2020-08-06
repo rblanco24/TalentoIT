@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using TalentoIT.Data;
 using TalentoIT.Data.Entities;
 
@@ -21,14 +23,14 @@ namespace TalentoIT.Controllers.API
             _context = context;
         }
 
-        // GET: api/CandidatoEntities
+        // GET: api/Candidato
         [HttpGet]
         public IEnumerable<CandidatoEntity> GetCandidato()
         {
             return _context.Candidato;
         }
 
-        // GET: api/CandidatoEntities/5
+        // GET: api/Candidato/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCandidatoEntity([FromRoute] int id)
         {
@@ -47,7 +49,7 @@ namespace TalentoIT.Controllers.API
             return Ok(candidatoEntity);
         }
 
-        // PUT: api/CandidatoEntities/5
+        // PUT: api/Candidato/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCandidatoEntity([FromRoute] int id, [FromBody] CandidatoEntity candidatoEntity)
         {
@@ -82,7 +84,8 @@ namespace TalentoIT.Controllers.API
             return NoContent();
         }
 
-        // POST: api/CandidatoEntities
+       
+        // POST: api/Candidato
         [HttpPost]
         public async Task<IActionResult> PostCandidatoEntity([FromBody] CandidatoEntity candidatoEntity)
         {
@@ -97,7 +100,7 @@ namespace TalentoIT.Controllers.API
             return CreatedAtAction("GetCandidatoEntity", new { id = candidatoEntity.id }, candidatoEntity);
         }
 
-        // DELETE: api/CandidatoEntities/5
+        // DELETE: api/Candidato/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCandidatoEntity([FromRoute] int id)
         {
@@ -122,5 +125,7 @@ namespace TalentoIT.Controllers.API
         {
             return _context.Candidato.Any(e => e.id == id);
         }
+
+        
     }
 }

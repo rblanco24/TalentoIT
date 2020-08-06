@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using TalentoIT.Data;
 using TalentoIT.Data.Entities;
 
@@ -148,6 +145,12 @@ namespace TalentoIT.Controllers
         private bool ReclutadorEntityExists(int id)
         {
             return _context.Reclutador.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        public IActionResult submit(string LbTecnologia)
+        {
+            return RedirectToAction("Index", "Tecnologia", new { parametro = LbTecnologia });
         }
     }
 }
