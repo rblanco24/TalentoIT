@@ -63,7 +63,7 @@ namespace TalentoIT
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Reclutador}/{action=Index}/{id?}");
             });
         }
     }
