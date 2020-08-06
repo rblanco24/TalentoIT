@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using TalentoIT.Data;
 using TalentoIT.Data.Entities;
@@ -152,5 +154,15 @@ namespace TalentoIT.Controllers
         {
             return RedirectToAction("Index", "Tecnologia", new { parametro = LbTecnologia });
         }
+        [HttpPost]
+        public IActionResult json(int Id)
+        {
+            string url = "http://jsonplaceholder.typicode.com/users";
+            var json = new WebClient().DownloadString(url);
+            dynamic m = JsonConvert.DeserializeObject(json);
+
+            return View(m);
+        }
+
     }
 }

@@ -153,5 +153,10 @@ namespace TalentoIT.Controllers
         {
             return RedirectToAction("Index", "Reclutador", new { parametro = "" });
         }
+
+        public IActionResult Candidatos(string Id)
+        {
+            return RedirectToAction("json", "Reclutador", new { parametro = Id });
+        }
     }
 }
